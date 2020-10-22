@@ -250,6 +250,8 @@
                             document.getElementById("get_odgovor").innerHTML = JSON.stringify(data,null,2);
                         });
                     }
+                        
+
                     break;
                 case "post":
                     if(tabela=="radio_novosti"){
@@ -284,10 +286,124 @@
                     }
                     break;
                 case "put":
-                    //kod za bonus poene
+                    
+                if(tabela=="radio_novosti"){
+                        var values = {
+                            "naslov":$("input[name=naslov_novosti_put]").val(),
+                            "tekst":$("#tekst_novosti_put").val(),
+                            "kategorija_id": parseInt($("#kategorija_odabir_put").val())
+                        };
+                        console.log(values);
+                        $.ajax({
+                            url: "http://localhost/rest/api/novosti/6",
+                            type: "PUT",
+                            data: JSON.stringify(values),
+                            success: function(data){
+                                alert("Odgovor od servera> "+data['poruka']);
+                            }
+                        });
+                    }else{
+                        var values ={
+                            "kategorija": $("input[name=kategorija_naziv_put]").val(),
+                        }
+                        console.log(values);
+                        $.ajax({
+                            url: 'http://localhost/rest/api/kategorije/5',
+                            type: "PUT",
+                            data: JSON.stringify(values),
+                            success: function(data){
+                                alert("Odgovor od servera> "+data['poruka']);
+                            }
+                        });
+                    }
+                    break;
+                    if(tabela=="radio_novosti"){
+                        var values = {
+                            "naslov":$("input[name=naslov_novosti_put]").val(),
+                            "tekst":$("#tekst_novosti_put").val(),
+                            "kategorija_id": parseInt($("#kategorija_odabir_put").val())
+                        };
+                        console.log(values);
+                        $.ajax({
+                            url: "http://localhost/rest/api/novosti/"+$("#id_novosti").val(),
+                            type: "PUT",
+                            data: JSON.stringify(values),
+                            success: function(data){
+                                alert("Odgovor od servera> "+data['poruka']);
+                            }
+                        });
+                    }else{
+                        var values ={
+                            "kategorija": $("input[name=kategorija_naziv_put]").val(),
+                        }
+                        console.log(values);
+                        $.ajax({
+                            url: 'http://localhost/rest/api/kategorije/'+$("#id_kategorije").val(),
+                            type: "PUT",
+                            data: JSON.stringify(values),
+                            success: function(data){
+                                alert("Odgovor od servera> "+data['poruka']);
+                            }
+                        });
+                    }
+
                     break;
                 case "delete":
-                    //kod za bonus poene
+                if(tabela=="radio_novosti"){
+                        var values = {
+                            "id": parseInt($("brisanje").val())
+                        };
+                        console.log(values);
+                        $.ajax({
+                            url: "http://localhost/rest/api/novosti/"+$("#brisanje").val(),
+                            type: "DELETE",
+                            data: JSON.stringify(values),
+                            success: function(data){
+                                alert("Odgovor od servera> "+data['poruka']);
+                            }
+                        });
+                    }else{
+                        var values ={
+                            "kategorija": $("input[name=kategorija_naziv]").val(),
+                        }
+                        console.log(values);
+                        $.ajax({
+                            url: 'http://localhost/rest/api/kategorije/'+$("#brisanje").val(),
+                            type: "DELETE",
+                            data: JSON.stringify(values),
+                            success: function(data){
+                                alert("Odgovor od servera> "+data['poruka']);
+                            }
+                        });
+                    }
+                    break;
+                    if(tabela=="radio_novosti"){
+                        var values = {
+                            "id": parseInt($("brisanje").val())
+                        };
+                        console.log(values);
+                        $.ajax({
+                            url: "http://localhost/rest/api/novosti/"+$("#brisanje").val(),
+                            type: "DELETE",
+                            data: JSON.stringify(values),
+                            success: function(data){
+                                alert("Odgovor od servera> "+data['poruka']);
+                            }
+                        });
+                    }else{
+                        var values ={
+                            "kategorija": $("input[name=kategorija_naziv]").val(),
+                        }
+                        console.log(values);
+                        $.ajax({
+                            url: 'http://localhost/rest/api/kategorije/'+$("#brisanje").val(),
+                            type: "DELETE",
+                            data: JSON.stringify(values),
+                            success: function(data){
+                                alert("Odgovor od servera> "+data['poruka']);
+                            }
+                        });
+                    }
                     break;
                 default:
                     console.log("default");
